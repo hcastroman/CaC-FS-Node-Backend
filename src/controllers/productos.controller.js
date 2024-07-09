@@ -2,29 +2,29 @@ const db = require("../db/db")
 
 //GET ALL
 const getProductos = (req, res) => {
-  const sql = "SELECT p.id, p.nombre, p.precio, p.espesor, p.medidas, p.cubre, p.cant_unidades, p.imagen, p.stock, c.nombre AS categoria_nombre FROM productos p JOIN categorias c ON p.categoria_id = c.id";
-  db.query(sql, (error, rows) => {
+  const sql = "SELECT p.id, p.nombre, p.precio, p.espesor, p.medidas, p.cubre, p.cant_unidades, p.imagen, p.stock, p.categoria_id, c.nombre AS categoria_nombre FROM productos p JOIN categorias c ON p.categoria_id = c.id";
+  db.query(sql, (error, result) => {
     if (error) {
       console.log(error); //Muestra el error en la terminal
       return res.status(500).json({ error: "Intente mas tarde" });
     }
-    res.json(rows);
+    res.json(result);
   });
 };
     
 //GET BY ID
 const getProductoByID = (req, res) => {
-  const { id } = req.params;
-  const sql = "SELECT p.id, p.nombre, p.precio, p.espesor, p.medidas, p.cubre, p.cant_unidades, p.imagen, p.stock, c.nombre AS categoria_nombre FROM productos p JOIN categorias c ON p.categoria_id = c.id WHERE p.id = ?";
-  db.query(sql, [id], (error, rows) => {
+  const sql = "SELECT p.id, p.nombre, p.precio, p.espesor, p.medidas, p.cubre, p.cant_unidades, p.imagen, p.stock, p.categoria_id, c.nombre AS categoria_nombre FROM productos p JOIN categorias c ON p.categoria_id = c.id WHERE p.id = ?";
+  const {id} = req.params;
+  db.query(sql, [id], (error, result) => {
     if (error) {
       console.log(error); //Muestra el error en la terminal
       return res.status(500).json({ error: "Intente mas tarde" });
     }
-    if (rows.length === 0) {
+    if (result.length === 0) {
       return res.status(404).json({ message: "Producto Inexistente" });
     }
-    res.json(rows[0]);
+    res.json(result[0]);
   });
 };
   
@@ -44,23 +44,26 @@ const addProducto = (req, res) => {
 
 //PUT
 const updateStockProducto = (req, res) =>{ 
-  const { id } = req.params;  
   const sql = "UPDATE productos SET stock = ? WHERE id = ?"; 
+  const {id} = req.params;  
   const {stock} = req.body; 
   const values = [stock, id]; 
   db.query (sql, values, (error, result) => { 
     if (error) {
       console.log(error); //Muestra el error en la terminal
       return res.status(500).json({ error: "Intente mas tarde" }); 
-      }
+    }
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ message: "Producto Inexistente" });
+    }
     res.json({id:id, ...req.body }); 
   });
 };
 
 //DELETE
 const deleteProducto = (req, res) => {
-  const { id } = req.params;
   const sql = "DELETE FROM productos WHERE id = ?";
+  const {id} = req.params;
   db.query(sql, [id], (error, result) => {
     if (error) {
       console.log(error); //Muestra el error en la terminal
