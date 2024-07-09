@@ -91,6 +91,51 @@ INSERT INTO `compras` (`id`, `cliente_id`, `fecha`, `total`) VALUES
 	(19, 9, '2024-06-19', 5000),
 	(20, 10, '2024-06-20', 21000);
 
+-- Volcando estructura para tabla placas.productos
+CREATE TABLE IF NOT EXISTS `productos` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `precio` double NOT NULL,
+  `espesor` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `medidas` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `cubre` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `cant_unidades` int NOT NULL,
+  `imagen` varchar(300) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `stock` int NOT NULL,
+  `categoria_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `categoria_id` (`categoria_id`),
+  CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Volcando datos para la tabla placas.productos: ~25 rows (aproximadamente)
+INSERT INTO `productos` (`id`, `nombre`, `precio`, `espesor`, `medidas`, `cubre`, `cant_unidades`, `imagen`, `stock`, `categoria_id`) VALUES
+	(1, 'modelo traverlite', 5999, '1cm', '30x60cm', '2,16m2', 12, '', 100, 1),
+	(2, 'modelo mar del plata', 7559, '1cm', '30x60cm', '2,16m2', 12, '', 200, 1),
+	(3, 'modelo travertino', 5999, '1cm', '30x60cm', '2,16m2', 12, '', 150, 1),
+	(4, 'modelo panal', 7777, '1cm', '30x60cm', '2,16m2', 12, '', 200, 1),
+	(5, 'modelo marmol', 7559, '1cm', '30x60cm', '2,16m2', 12, '', 100, 1),
+	(6, 'modelo ladrillo vista', 11199, '1cm', '30x60cm', '2,16m2', 12, '', 150, 1),
+	(7, 'modelo laja', 7489, '1cm', '30x60cm', '2,16m2', 12, '', 100, 1),
+	(8, 'modelo sol', 6999, '1cm', '30x60cm', '2,16m2', 12, '', 300, 1),
+	(9, 'modelo flor', 7489, '1cm', '30x60cm', '2,16m2', 12, '', 100, 1),
+	(10, 'modelo piedra', 7999, '1cm', '30x60cm', '2,16m2', 12, '', 120, 1),
+	(11, 'cielorraso básico', 2000, '0.8cm', '60x60cm', '4.32m2', 12, '', 100, 2),
+	(12, 'cielorraso acústico', 3500, '0.8cm', '60x60cm', '4.32m2', 12, '', 80, 2),
+	(13, 'cielorraso decorativo', 5000, '0.8cm', '60x60cm', '4.32m2', 12, '', 50, 2),
+	(14, 'cielorraso aislante', 4000, '0.8cm', '60x60cm', '4.32m2', 12, '', 70, 2),
+	(15, 'cielorraso reflectivo', 4500, '0.8cm', '60x60cm', '4.32m2', 12, '', 60, 2),
+	(16, 'panel decorativo 3D', 6000, '1cm', '50x50cm', '2.5m2', 10, '', 90, 3),
+	(17, 'papel tapiz floral', 1500, '0.1cm', '50x50cm', '2.5m2', 10, '', 200, 3),
+	(18, 'vinilo adhesivo', 2500, '0.1cm', '50x50cm', '2.5m2', 10, '', 120, 3),
+	(19, 'vinilo decorativo', 2700, '0.1cm', '50x50cm', '2.5m2', 10, '', 130, 3),
+	(20, 'mosaico decorativo', 5000, '0.8cm', '30x30cm', '7.5m2', 25, '', 80, 3),
+	(21, 'pintura exterior', 5500, '0.1cm', '10L', '50m2', 1, '', 50, 4),
+	(22, 'revestimiento exterior', 8000, '1.5cm', '20kg', '10m2', 1, '', 30, 4),
+	(23, 'impermeabilizante', 7000, '0.1cm', '5L', '25m2', 1, '', 70, 4),
+	(24, 'barniz exterior', 4000, '0.1cm', '4L', '20m2', 1, '', 60, 4),
+	(25, 'protector para madera', 4500, '0.1cm', '4L', '15m2', 1, '', 40, 4);
+
 -- Volcando estructura para tabla placas.compra_productos
 CREATE TABLE IF NOT EXISTS `compra_productos` (
   `compra_id` int NOT NULL,
@@ -136,50 +181,6 @@ INSERT INTO `compra_productos` (`compra_id`, `producto_id`, `cantidad`, `subtota
 	(9, 15, 2, 10000),
 	(10, 11, 1, 7999);
 
--- Volcando estructura para tabla placas.productos
-CREATE TABLE IF NOT EXISTS `productos` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `precio` double NOT NULL,
-  `espesor` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
-  `medidas` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `cubre` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `cant_unidades` int NOT NULL,
-  `imagen` varchar(300) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
-  `stock` int NOT NULL,
-  `categoria_id` int NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `categoria_id` (`categoria_id`),
-  CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- Volcando datos para la tabla placas.productos: ~25 rows (aproximadamente)
-INSERT INTO `productos` (`id`, `nombre`, `precio`, `espesor`, `medidas`, `cubre`, `cant_unidades`, `imagen`, `stock`, `categoria_id`) VALUES
-	(1, 'modelo traverlite', 5999, '1cm', '30x60cm', '2,16m2', 12, '', 100, 1),
-	(2, 'modelo mar del plata', 7559, '1cm', '30x60cm', '2,16m2', 12, '', 200, 1),
-	(3, 'modelo travertino', 5999, '1cm', '30x60cm', '2,16m2', 12, '', 150, 1),
-	(4, 'modelo panal', 7777, '1cm', '30x60cm', '2,16m2', 12, '', 200, 1),
-	(5, 'modelo marmol', 7559, '1cm', '30x60cm', '2,16m2', 12, '', 100, 1),
-	(6, 'modelo ladrillo vista', 11199, '1cm', '30x60cm', '2,16m2', 12, '', 150, 1),
-	(7, 'modelo laja', 7489, '1cm', '30x60cm', '2,16m2', 12, '', 100, 1),
-	(8, 'modelo sol', 6999, '1cm', '30x60cm', '2,16m2', 12, '', 300, 1),
-	(9, 'modelo flor', 7489, '1cm', '30x60cm', '2,16m2', 12, '', 100, 1),
-	(10, 'modelo piedra', 7999, '1cm', '30x60cm', '2,16m2', 12, '', 120, 1),
-	(11, 'cielorraso básico', 2000, '0.8cm', '60x60cm', '4.32m2', 12, '', 100, 2),
-	(12, 'cielorraso acústico', 3500, '0.8cm', '60x60cm', '4.32m2', 12, '', 80, 2),
-	(13, 'cielorraso decorativo', 5000, '0.8cm', '60x60cm', '4.32m2', 12, '', 50, 2),
-	(14, 'cielorraso aislante', 4000, '0.8cm', '60x60cm', '4.32m2', 12, '', 70, 2),
-	(15, 'cielorraso reflectivo', 4500, '0.8cm', '60x60cm', '4.32m2', 12, '', 60, 2),
-	(16, 'panel decorativo 3D', 6000, '1cm', '50x50cm', '2.5m2', 10, '', 90, 3),
-	(17, 'papel tapiz floral', 1500, '0.1cm', '50x50cm', '2.5m2', 10, '', 200, 3),
-	(18, 'vinilo adhesivo', 2500, '0.1cm', '50x50cm', '2.5m2', 10, '', 120, 3),
-	(19, 'vinilo decorativo', 2700, '0.1cm', '50x50cm', '2.5m2', 10, '', 130, 3),
-	(20, 'mosaico decorativo', 5000, '0.8cm', '30x30cm', '7.5m2', 25, '', 80, 3),
-	(21, 'pintura exterior', 5500, '0.1cm', '10L', '50m2', 1, '', 50, 4),
-	(22, 'revestimiento exterior', 8000, '1.5cm', '20kg', '10m2', 1, '', 30, 4),
-	(23, 'impermeabilizante', 7000, '0.1cm', '5L', '25m2', 1, '', 70, 4),
-	(24, 'barniz exterior', 4000, '0.1cm', '4L', '20m2', 1, '', 60, 4),
-	(25, 'protector para madera', 4500, '0.1cm', '4L', '15m2', 1, '', 40, 4);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
