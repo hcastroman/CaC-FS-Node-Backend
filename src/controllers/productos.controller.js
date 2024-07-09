@@ -50,7 +50,7 @@ const updateStockProducto = (req, res) =>{
   const values = [stock, id]; 
   db.query (sql, values, (error, result) => { 
     if (error) {
-      console.log(error) //Muestra el error en la terminal
+      console.log(error); //Muestra el error en la terminal
       return res.status(500).json({ error: "Intente mas tarde" }); 
       }
     res.json({id:id, ...req.body }); 
