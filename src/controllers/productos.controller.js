@@ -2,7 +2,7 @@ const db = require("../db/db")
 
 //GET ALL
 const getProductos = (req, res) => {
-  const sql = "p.id, p.nombre, p.precio, p.espesor, p.medidas, p.cubre, p.cant_unidades, p.imagen, p.stock, c.nombre AS categoria_nombre FROM productos p JOIN categorias c ON p.categoria_id = c.id";
+  const sql = "SELECT p.id, p.nombre, p.precio, p.espesor, p.medidas, p.cubre, p.cant_unidades, p.imagen, p.stock, c.nombre AS categoria_nombre FROM productos p JOIN categorias c ON p.categoria_id = c.id";
   db.query(sql, (error, rows) => {
     if (error) {
       console.log(error); //Muestra el error en la terminal
