@@ -91,51 +91,6 @@ INSERT INTO `compras` (`id`, `cliente_id`, `fecha`, `total`) VALUES
 	(19, 9, '2024-06-19', 5000),
 	(20, 10, '2024-06-20', 21000);
 
--- Volcando estructura para tabla placas.compra_productos
-CREATE TABLE IF NOT EXISTS `compra_productos` (
-  `compra_id` int NOT NULL,
-  `producto_id` int NOT NULL,
-  `cantidad` int NOT NULL,
-  `subtotal` double NOT NULL,
-  KEY `compra_id` (`compra_id`),
-  KEY `producto_id` (`producto_id`),
-  CONSTRAINT `compra_productos_ibfk_1` FOREIGN KEY (`compra_id`) REFERENCES `compras` (`id`),
-  CONSTRAINT `compra_productos_ibfk_2` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- Volcando datos para la tabla placas.compra_productos: ~30 rows (aproximadamente)
-INSERT INTO `compra_productos` (`compra_id`, `producto_id`, `cantidad`, `subtotal`) VALUES
-	(1, 1, 2, 11998),
-	(2, 2, 2, 15059),
-	(3, 3, 4, 23996),
-	(4, 4, 2, 15554),
-	(5, 5, 2, 20000),
-	(6, 6, 1, 12000),
-	(7, 7, 2, 20000),
-	(8, 8, 3, 30000),
-	(9, 12, 2, 4000),
-	(10, 13, 5, 25000),
-	(11, 14, 3, 15000),
-	(12, 15, 5, 25000),
-	(13, 16, 3, 18000),
-	(14, 17, 4, 16000),
-	(15, 18, 8, 22000),
-	(16, 19, 4, 14000),
-	(17, 20, 9, 27000),
-	(18, 21, 5, 23000),
-	(19, 22, 1, 5000),
-	(20, 23, 7, 21000),
-	(1, 9, 1, 7489),
-	(2, 10, 3, 23997),
-	(3, 7, 2, 14978),
-	(4, 5, 1, 7559),
-	(5, 2, 1, 7559),
-	(6, 8, 1, 6999),
-	(7, 3, 2, 11998),
-	(8, 4, 1, 7777),
-	(9, 15, 2, 10000),
-	(10, 11, 1, 7999);
-
 -- Volcando estructura para tabla placas.productos
 CREATE TABLE IF NOT EXISTS `productos` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -180,6 +135,51 @@ INSERT INTO `productos` (`id`, `nombre`, `precio`, `espesor`, `medidas`, `cubre`
 	(23, 'impermeabilizante', 7000, '0.1cm', '5L', '25m2', 1, '', 70, 4),
 	(24, 'barniz exterior', 4000, '0.1cm', '4L', '20m2', 1, '', 60, 4),
 	(25, 'protector para madera', 4500, '0.1cm', '4L', '15m2', 1, '', 40, 4);
+
+-- Volcando estructura para tabla placas.compra_productos
+CREATE TABLE IF NOT EXISTS `compra_productos` (
+  `compra_id` int NOT NULL,
+  `producto_id` int NOT NULL,
+  `cantidad` int NOT NULL,
+  `subtotal` double NOT NULL,
+  KEY `compra_id` (`compra_id`),
+  KEY `producto_id` (`producto_id`),
+  CONSTRAINT `compra_productos_ibfk_1` FOREIGN KEY (`compra_id`) REFERENCES `compras` (`id`),
+  CONSTRAINT `compra_productos_ibfk_2` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Volcando datos para la tabla placas.compra_productos: ~30 rows (aproximadamente)
+INSERT INTO `compra_productos` (`compra_id`, `producto_id`, `cantidad`, `subtotal`) VALUES
+	(1, 1, 2, 11998),
+	(2, 2, 2, 15059),
+	(3, 3, 4, 23996),
+	(4, 4, 2, 15554),
+	(5, 5, 2, 20000),
+	(6, 6, 1, 12000),
+	(7, 7, 2, 20000),
+	(8, 8, 3, 30000),
+	(9, 12, 2, 4000),
+	(10, 13, 5, 25000),
+	(11, 14, 3, 15000),
+	(12, 15, 5, 25000),
+	(13, 16, 3, 18000),
+	(14, 17, 4, 16000),
+	(15, 18, 8, 22000),
+	(16, 19, 4, 14000),
+	(17, 20, 9, 27000),
+	(18, 21, 5, 23000),
+	(19, 22, 1, 5000),
+	(20, 23, 7, 21000),
+	(1, 9, 1, 7489),
+	(2, 10, 3, 23997),
+	(3, 7, 2, 14978),
+	(4, 5, 1, 7559),
+	(5, 2, 1, 7559),
+	(6, 8, 1, 6999),
+	(7, 3, 2, 11998),
+	(8, 4, 1, 7777),
+	(9, 15, 2, 10000),
+	(10, 11, 1, 7999);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
