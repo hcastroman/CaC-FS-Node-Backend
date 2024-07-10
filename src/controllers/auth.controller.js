@@ -39,9 +39,9 @@ exports.login = (req,res) => {
 
 //GET
 exports.cliente = (req,res) => {
-    const user =  req.user;
+    const email =  req.user;
     const sql = "SELECT nombre, email, telefono, cuil FROM clientes where email = ? ";
-    db.query(sql,[user],(err,result)=>{
+    db.query(sql,[email],(err,result)=>{
         if (err) {
             console.log(err);
             return res.status(500).json({error: "Intente mas tarde"});
