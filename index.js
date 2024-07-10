@@ -1,3 +1,4 @@
+require('dotenv').config();
 
 const express = require("express");
 const app = express();
@@ -11,8 +12,8 @@ app.use(express.json());
 const productosRoutes = require("./src/routes/productos.router");
 const authRoutes = require("./src/routes/auth.router");
 
-app.use('/productos',productosRoutes);
-app.use('/auth',authRoutes);
+app.use("/productos",productosRoutes);
+app.use("/auth",authRoutes);
 
 const PORT = process.env.PORT || 3000;
 

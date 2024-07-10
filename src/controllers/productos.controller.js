@@ -5,7 +5,7 @@ const getProductos = (req, res) => {
   const sql = "SELECT p.id, p.nombre, p.precio, p.espesor, p.medidas, p.cubre, p.cant_unidades, p.imagen, p.stock, p.categoria_id, c.nombre AS categoria_nombre FROM productos p JOIN categorias c ON p.categoria_id = c.id";
   db.query(sql, (error, result) => {
     if (error) {
-      console.log(error); //Muestra el error en la terminal
+      console.log(error); 
       return res.status(500).json({ error: "Intente mas tarde" });
     }
     res.json(result);
@@ -18,7 +18,7 @@ const getProductoByID = (req, res) => {
   const {id} = req.params;
   db.query(sql, [id], (error, result) => {
     if (error) {
-      console.log(error); //Muestra el error en la terminal
+      console.log(error); 
       return res.status(500).json({ error: "Intente mas tarde" });
     }
     if (result.length === 0) {
@@ -35,7 +35,7 @@ const addProducto = (req, res) => {
   const values = [nombre, precio, espesor, medidas, cubre, cant_unidades, imagen, stock, categoria_id]; 
   db.query (sql, values, (error, result) => { 
   if (error) {
-    console.log(error); //Muestra el error en la terminal
+    console.log(error); 
     return res.status(500).json({ error: "Intente mas tarde" }); 
   }
   res.json({id: result.insertId, ...req.body }); 
@@ -50,7 +50,7 @@ const updateStockProducto = (req, res) =>{
   const values = [stock, id]; 
   db.query (sql, values, (error, result) => { 
     if (error) {
-      console.log(error); //Muestra el error en la terminal
+      console.log(error); 
       return res.status(500).json({ error: "Intente mas tarde" }); 
     }
     if (result.affectedRows === 0) {
@@ -66,7 +66,7 @@ const deleteProducto = (req, res) => {
   const {id} = req.params;
   db.query(sql, [id], (error, result) => {
     if (error) {
-      console.log(error); //Muestra el error en la terminal
+      console.log(error); 
       return res.status(500).json({ error: "Intente mas tarde" });
     }
     if (result.affectedRows === 0) {
