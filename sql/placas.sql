@@ -46,16 +46,16 @@ CREATE TABLE IF NOT EXISTS `clientes` (
 
 -- Volcando datos para la tabla placas.clientes: ~10 rows (aproximadamente)
 INSERT INTO `clientes` (`id`, `nombre`, `email`, `telefono`, `password`, `cuil`) VALUES
-	(1, 'Juan Pérez', 'juan.perez@example.com', '+123456789', 'clave123', '20-12345678-9'),
-	(2, 'María Gómez', 'maria.gomez@example.com', '+987654321', 'password456', '27-87654321-8'),
-	(3, 'Carlos López', 'carlos.lopez@example.com', '+1122334455', 'segura789', '23-11223344-7'),
-	(4, 'Ana Martínez', 'ana.martinez@example.com', '+9988776655', 'contraseña123', '24-99887766-6'),
-	(5, 'Luis Rodríguez', 'luis.rodriguez@example.com', '+5544332211', 'seguridad456', '21-55443322-5'),
-	(6, 'Laura Sánchez', 'laura.sanchez@example.com', '+6677889900', 'clave567', '25-66778899-4'),
-	(7, 'Pedro García', 'pedro.garcia@example.com', '+1122334455', 'contraseña890', '26-11223344-3'),
-	(8, 'Elena Ramírez', 'elena.ramirez@example.com', '+9988776655', 'password789', '28-99887766-2'),
-	(9, 'Sara López', 'sara.lopez@example.com', '+5544332211', 'clave890', '29-55443322-1'),
-	(10, 'Javier Ruiz', 'javier.ruiz@example.com', '+6677889900', 'segura567', '30-66778899-0');
+	(1, 'Juan Pérez', 'juan.perez@example.com', '+123456789', '$2a$08$VubOX7bxWO6tpbXWvwxMzO.Uru7q5nGheUudZkOlCxcedVFpSg8yC', '20-12345678-9'),
+	(2, 'María Gómez', 'maria.gomez@example.com', '+987654321', '$2a$08$qETdHkOEyS9ZMOpW24/EMeITJXnDe3kcnnsii0wDo8rAmaYMrWs2u', '27-87654321-8'),
+	(3, 'Carlos López', 'carlos.lopez@example.com', '+1122334455', '$2a$08$IfWwMfN7/WlH6gAIYiZcOeEKtUjLu7V.VwLk15xySH7RJk6ydhxy2', '23-11223344-7'),
+	(4, 'Ana Martínez', 'ana.martinez@example.com', '+9988776655', '$2a$08$xzY/vFxDZC2vGdwumLPJLerLFYDM1VGcEOE5c5HqsWvCi6jvSFuEu', '24-99887766-6'),
+	(5, 'Luis Rodríguez', 'luis.rodriguez@example.com', '+5544332211', '$2a$08$1mLZWpHHdLWi8buCyRFOdO6oXIF1pCkeKMr0D/qxltJwxN4pCd1Za', '21-55443322-5'),
+	(6, 'Laura Sánchez', 'laura.sanchez@example.com', '+6677889900', '$2a$08$5cWfUjCANKkhtoANA0kIN.i8/m/SiBeJ7lnT0gOy3AGXUsxqJXlaC', '25-66778899-4'),
+	(7, 'Pedro García', 'pedro.garcia@example.com', '+1122334455', '$2a$08$pIr4RD3VDpTZ5WTeOjigQ.uL.IvQJNddCs3.Sh0G4pqGSRuBBW9IW', '26-11223344-3'),
+	(8, 'Elena Ramírez', 'elena.ramirez@example.com', '+9988776655', '$2a$08$fmRbA6Cnl9MhDBFdtflAi.UeEC54EX04d/90P6OIdUBClZ/dIzHa2', '28-99887766-2'),
+	(9, 'Sara López', 'sara.lopez@example.com', '+5544332211', '$2a$08$NufnhNP9ERiVDHPgV1KZ7uFtgmEeoWxLI1gQdQsCQYrMUVUbptjwW', '29-55443322-1'),
+	(10, 'Javier Ruiz', 'javier.ruiz@example.com', '+6677889900', '$2a$08$n86yHQoh0ORT2OsJ6TrDq.Odpf.8KuKg1c8MEftTwB9sCV29GnKLC', '30-66778899-0');
 
 -- Volcando estructura para tabla placas.compras
 CREATE TABLE IF NOT EXISTS `compras` (

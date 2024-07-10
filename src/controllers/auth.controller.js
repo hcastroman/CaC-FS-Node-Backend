@@ -1,26 +1,29 @@
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
-const config = require('../config/config');
-const db = require('../db/db');
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 
+const config = require("../config/config");
+const db = require("../db/db");
+
+//POST
 exports.register = (req,res) => {
     const {nombre, email, telefono, password, cuil} = req.body;
     const hashedPassword  = bcrypt.hashSync(password,8);
-    const sql = 'INSERT INTO clientes (nombre, email, telefono, password, cuil) VALUES (? , ? , ? , ? , ?)';
+    const sql = "INSERT INTO clientes (nombre, email, telefono, password, cuil) VALUES (? , ? , ? , ? , ?)";
     const values = [nombre, email, telefono, hashedPassword, cuil];
     db.query(sql, values, (err,result)=>{
         if (err) {
             console.log(err);
             return res.status(500).json({error: "Intente mas tarde"});
-        }
+        } 
         const token = jwt.sign({user: email},config.secretKey,{expiresIn:config.tokenExpiresIn});
         res.status(201).send({auth:true,token});
     });
 };
-    
+
+//POST
 exports.login = (req,res) => {
     const {email, password} = req.body;
-    const sql = 'SELECT password FROM clientes where email = ? ';
+    const sql = "SELECT password FROM clientes where email = ? ";
     db.query(sql, [email], (err,result)=>{
         if (err) {
             console.log(err);
@@ -34,9 +37,10 @@ exports.login = (req,res) => {
     });
 };
 
+//GET
 exports.cliente = (req,res) => {
     const user =  req.user;
-    const sql = 'SELECT nombre, email, telefono, cuil FROM clientes where email = ? ';
+    const sql = "SELECT nombre, email, telefono, cuil FROM clientes where email = ? ";
     db.query(sql,[user],(err,result)=>{
         if (err) {
             console.log(err);
